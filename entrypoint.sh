@@ -10,7 +10,7 @@ ln -s /u01/app/oracle-product /u01/app/oracle/product
 #Run Oracle root scripts
 echo "Running root scripts."
 /u01/app/oraInventory/orainstRoot.sh 2>&1
-echo | /u01/app/oracle/product/11.2.0/EE/root.sh 2>&1 || true
+echo | /u01/app/oracle/product/11.2.0/BRCGS/root.sh 2>&1 || true
 
 impdp () {
 	set +e
@@ -43,13 +43,13 @@ case "$1" in
 		#Check for mounted database files
 		if [ "$(ls -A /u01/app/oracle/oradata)" ]; then
 			echo "found files in /u01/app/oracle/oradata Using them instead of initial database"
-			echo "EE:$ORACLE_HOME:N" >> /etc/oratab
+			echo "BRCGS:$ORACLE_HOME:N" >> /etc/oratab
 			chown oracle:dba /etc/oratab
 			chown 664 /etc/oratab
-			rm -rf /u01/app/oracle-product/11.2.0/EE/dbs
-			ln -s /u01/app/oracle/dbs /u01/app/oracle-product/11.2.0/EE/dbs
+			rm -rf /u01/app/oracle-product/11.2.0/BRCGS/dbs
+			ln -s /u01/app/oracle/dbs /u01/app/oracle-product/11.2.0/BRCGS/dbs
 			#Startup Database
-			su oracle -c "/u01/app/oracle/product/11.2.0/EE/bin/tnslsnr &"
+			su oracle -c "/u01/app/oracle/product/11.2.0/BRCGS/bin/tnslsnr &"
 			su oracle -c 'echo startup\; | $ORACLE_HOME/bin/sqlplus -S / as sysdba'
 		else
 			echo "Database not initialized. Initializing database."
@@ -61,14 +61,14 @@ case "$1" in
 
 			#printf "Setting up:\nprocesses=$processes\nsessions=$sessions\ntransactions=$transactions\n"
 
-			mv /u01/app/oracle-product/11.2.0/EE/dbs /u01/app/oracle/dbs
-			ln -s /u01/app/oracle/dbs /u01/app/oracle-product/11.2.0/EE/dbs
+			mv /u01/app/oracle-product/11.2.0/BRCGS/dbs /u01/app/oracle/dbs
+			ln -s /u01/app/oracle/dbs /u01/app/oracle-product/11.2.0/BRCGS/dbs
 
 			echo "Starting tnslsnr"
-			su oracle -c "/u01/app/oracle/product/11.2.0/EE/bin/tnslsnr &"
-			#create DB for SID: EE
+			su oracle -c "/u01/app/oracle/product/11.2.0/BRCGS/bin/tnslsnr &"
+			#create DB for SID: BRCGS
 			echo "Running initialization by dbca"
-			su oracle -c "$ORACLE_HOME/bin/dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname EE.oracle.docker -sid EE -responseFile NO_VALUE -characterSet $CHARACTER_SET -totalMemory $DBCA_TOTAL_MEMORY -emConfiguration LOCAL -dbsnmpPassword oracle -sysPassword oracle -systemPassword oracle"
+			su oracle -c "$ORACLE_HOME/bin/dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname BRCGS -sid BRCGS -responseFile NO_VALUE -characterSet $CHARACTER_SET -totalMemory $DBCA_TOTAL_MEMORY -emConfiguration LOCAL -dbsnmpPassword oracle -sysPassword oracle -systemPassword oracle"
 			
 			# echo "Configuring Apex console"
 			# cd $ORACLE_HOME/apex
