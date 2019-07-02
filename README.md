@@ -3,13 +3,13 @@ Oracle Enterprise Edition 11g Release 2
 
 Oracle Enterprise Edition 11g Release 2 on Oracle Linux
 
-This **Dockerfile** is a [trusted build](https://registry.hub.docker.com/u/sath89/oracle-ee-11g/) of [Docker Registry](https://registry.hub.docker.com/).
+This **Dockerfile** is a [trusted build](https://registry.hub.docker.com/u/yunwisdom/oracle-ee-11g/) of [Docker Registry](https://registry.hub.docker.com/).
 
 [![asciicast](https://asciinema.org/a/45878.png)](https://asciinema.org/a/45878)
 
 ### Installation
 
-    docker pull sath89/oracle-ee-11g
+    docker pull yunwisdom/oracle-ee-11g
 
 Run with 8080 and 1521 ports opened:
 
@@ -66,7 +66,7 @@ By default Import from `docker-entrypoint-initdb.d` enabled only if you are init
 **In case of using DMP imports dump file should be named like ${IMPORT_SCHEME_NAME}.dmp**
 **User credentials for imports are  ${IMPORT_SCHEME_NAME}/${IMPORT_SCHEME_NAME}**
 
-If you have an issue with database init like DBCA operation failed, please reffer to this [issue](https://github.com/MaksymBilenko/docker-oracle-11g/issues/16)
+If you have an issue with database init like DBCA operation failed, please reffer to this [issue](https://github.com/yunwisdom/docker-oracle-ee-11g/issues/16)
 
 
 
@@ -77,6 +77,6 @@ If you have an issue with database init like DBCA operation failed, please reffe
 * Spike with clustering support
 * Spike with DB migration from 11g
 
-**In case of any issues please post it [here](https://github.com//docker-oracle-11g/issues).**
+**In case of any issues please post it [here](https://github.com/yunwisdom/docker-oracle-ee-11g/issues).**
 
 
