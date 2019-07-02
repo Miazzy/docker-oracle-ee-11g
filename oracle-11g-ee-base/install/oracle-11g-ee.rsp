@@ -64,7 +64,7 @@ SELECTED_LANGUAGES=ar,bn,pt_BR,bg,fr_CA,ca,hr,cs,da,nl,ar_EG,en,en_GB,et,fi,fr,d
 #-------------------------------------------------------------------------------
 # Complete path of the Oracle Home  
 #-------------------------------------------------------------------------------
-ORACLE_HOME=/u01/app/oracle/product/11.2.0/EE
+ORACLE_HOME=/u01/app/oracle/product/11.2.0/BRCGS
 
 #-------------------------------------------------------------------------------
 # Complete path of the Oracle Base. 
